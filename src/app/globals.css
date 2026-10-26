@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), var(--font-devanagari), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --color-ink: #0b0d12;
+  --color-ink-2: #14171f;
+  --color-ink-3: #1e222c;
+  --color-mist: #f6f7f9;
+  --color-line: #e7e9ee;
+  --color-muted: #5b6270;
+  --color-ember-50: #fff4ee;
+  --color-ember-100: #ffe4d6;
+  --color-ember-400: #ff7a45;
+  --color-ember-500: #ff5a1f;
+  --color-ember-600: #e8460f;
+
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-orbit: spin 36s linear infinite;
+  --animate-orbit-rev: spin-rev 52s linear infinite;
+  --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes spin-rev {
+    to { transform: rotate(-360deg); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-ember-500 text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ember-500;
+  }
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer utilities {
+  .bg-dots {
+    background-image: radial-gradient(rgb(11 13 18 / 0.09) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .bg-dots-dark {
+    background-image: radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  .mask-radial {
+    mask-image: radial-gradient(ellipse at center, black 35%, transparent 72%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
