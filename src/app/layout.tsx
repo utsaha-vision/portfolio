@@ -39,6 +39,7 @@ const orgJsonLd = {
   "@type": "Organization",
   name: site.name,
   url: site.url,
+  logo: `${site.url}/brand/logo1.jpeg`,
   email: site.email,
   description: site.description,
   address: { "@type": "PostalAddress", addressLocality: site.location },

@@ -45,9 +45,11 @@ export function Footer() {
           </ul>
         </div>
       </Container>
-      <Container className="flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {year} {site.legalName}. All rights reserved.</p>
-        <p>Engineered in Nepal for the world.</p>
+      <Container>
+        <div className="flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} {site.legalName}. All rights reserved.</p>
+          <p>Engineered in Nepal for the world.</p>
+        </div>
       </Container>
     </footer>
   );

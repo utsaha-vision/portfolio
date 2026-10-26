@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Compass, Target } from "lucide-react";
-import { about, stats } from "@/content/site";
+import { about, site, stats } from "@/content/site";
 import { PageHeader } from "@/components/PageHeader";
 import { CtaBand } from "@/components/CtaBand";
 import { Reveal } from "@/components/Reveal";
@@ -30,7 +30,7 @@ export default function AboutPage() {
             <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl bg-ink">
               <div aria-hidden className="absolute inset-0 bg-dots-dark" />
               <div aria-hidden className="absolute h-[140%] w-[140%] rounded-full bg-ember-500/15 blur-[100px]" />
-              <LogoMark dark className="relative h-40 w-40" />
+              <LogoMark title={site.name} className="relative h-28 w-auto text-white sm:h-36" />
             </div>
           </Reveal>
         </Container>
