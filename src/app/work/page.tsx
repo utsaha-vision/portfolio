@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { hasWork } from "@/content/site";
 import { PageHeader } from "@/components/PageHeader";
 import { WorkGrid } from "@/components/WorkGrid";
 import { CtaBand } from "@/components/CtaBand";
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
+  if (!hasWork) notFound();
   return (
     <>
       <PageHeader

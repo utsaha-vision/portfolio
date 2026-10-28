@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { services, site } from "@/content/site";
+import { hasWork, services, site } from "@/content/site";
 import { Logo } from "./Logo";
 import { Container } from "./ui";
 
 const company = [
   { label: "About us", href: "/about" },
-  { label: "Our work", href: "/work" },
+  ...(hasWork ? [{ label: "Our work", href: "/work" }] : []),
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
@@ -18,6 +18,7 @@ export function Footer() {
         <div>
           <Logo dark />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">{site.description}</p>
+          {site.socials.length > 0 && (
           <ul className="mt-6 flex flex-wrap gap-2">
             {site.socials.map((s) => (
               <li key={s.label}>
@@ -32,6 +33,7 @@ export function Footer() {
               </li>
             ))}
           </ul>
+          )}
         </div>
         <FooterCol title="Services" links={services.slice(0, 6).map((s) => ({ label: s.title, href: `/services/${s.slug}` }))} />
         <FooterCol title="Company" links={company} />
@@ -41,7 +43,6 @@ export function Footer() {
             <li><a href={`mailto:${site.email}`} className="transition-colors hover:text-white">{site.email}</a></li>
             {site.phone && <li><a href={`tel:${site.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-white">{site.phone}</a></li>}
             <li>{site.location}</li>
-            <li>{site.hours}</li>
           </ul>
         </div>
       </Container>

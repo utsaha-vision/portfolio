@@ -15,14 +15,14 @@ export default function CareersPage() {
     <>
       <PageHeader eyebrow="Careers" title={careers.title} subtitle={careers.intro}>
         <div className="mt-9">
-          <Button href="#openings">View open roles</Button>
+          <Button href="#openings">{careers.openings.length > 0 ? "View open roles" : "Join our team"}</Button>
         </div>
       </PageHeader>
 
       <section className="py-20 sm:py-28">
         <Container>
           <SectionHeading eyebrow="Life at Utsaha Vision" title="Why you'll love working here." />
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {careers.perks.map((p) => (
                 <li key={p.title} className="h-full rounded-2xl border border-line p-7">
                   <Sparkles className="h-6 w-6 text-ember-500" strokeWidth={1.75} />
@@ -36,7 +36,11 @@ export default function CareersPage() {
 
       <section id="openings" className="bg-mist py-20 sm:py-28">
         <Container size="wide">
-          <SectionHeading eyebrow="Open positions" title="Find your role." />
+          <SectionHeading
+            eyebrow="Open positions"
+            title={careers.openings.length > 0 ? "Find your role." : "No open roles right now."}
+          />
+          {careers.openings.length > 0 && (
           <ul className="mt-12 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
             {careers.openings.map((o) => (
               <li key={o.title}>
@@ -55,10 +59,13 @@ export default function CareersPage() {
               </li>
             ))}
           </ul>
+          )}
           <div className="mt-8 rounded-2xl border border-dashed border-ink/20 p-8 text-center">
-            <p className="font-display text-lg font-semibold text-ink">Don&apos;t see the right role?</p>
+            <p className="font-display text-lg font-semibold text-ink">
+              {careers.openings.length > 0 ? "Don't see the right role?" : "Interested in working with us?"}
+            </p>
             <p className="mt-2 text-muted">
-              We&apos;re always looking for talented people. Send your CV to{" "}
+              We&apos;re always happy to hear from talented people. Send your CV to{" "}
               <a href={`mailto:${site.careersEmail}`} className="font-medium text-ember-600 hover:underline">{site.careersEmail}</a>.
             </p>
           </div>

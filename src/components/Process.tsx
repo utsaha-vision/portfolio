@@ -9,7 +9,7 @@ export function Process() {
         <Reveal>
           <SectionHeading
             eyebrow="How we deliver"
-            title="A proven delivery framework."
+            title="Our delivery process."
             subtitle="Predictable, transparent and built around continuous feedback, so there are no surprises."
           />
         </Reveal>

@@ -16,32 +16,28 @@ npm run build && npm start
 
 All copy (services, the custom software deep-dive (`customSoftware`), AI capabilities, industries, case studies, engagement models, careers, FAQ,
 contact details, socials) lives in
-[`src/content/site.ts`](src/content/site.ts). Entries marked `TODO: verify` are placeholders and
-should be replaced with real company information before launch.
+[`src/content/site.ts`](src/content/site.ts). Only publish facts you can stand behind: sections backed
+by an empty list (`caseStudies`, `careers.openings`, `site.socials`) stay hidden until you add real entries.
 
 Adding an entry to `services` or `caseStudies` automatically creates its page at `/services/<slug>`
-or `/work/<slug>`, adds it to the navigation/menus and the sitemap.
+or `/work/<slug>` and adds it to the menus and the sitemap. The first case study also brings back the
+"Work" nav link and the case-study sections on the home and service pages.
 
 ## Contact form
 
-The form posts to `/api/contact`, which validates input, filters bots via a honeypot, and sends
-email through [Resend](https://resend.com). Copy `.env.example` to `.env.local` and set:
+The contact form posts directly from the browser to [FormSubmit](https://formsubmit.co), which emails
+each enquiry to the inbox set as `formEmail` in `src/content/site.ts` (no backend or API key needed).
 
-| Variable | Purpose |
-| --- | --- |
-| `RESEND_API_KEY` | Resend API key |
-| `CONTACT_TO_EMAIL` | Inbox that receives enquiries |
-| `CONTACT_FROM_EMAIL` | Verified sender address |
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL used for SEO metadata |
-
-Without these, the form shows visitors a friendly error with the direct email address.
+**First-time setup:** the first submission triggers an activation email from FormSubmit to that inbox.
+Click the link in it once; after that, every submission is delivered. Optionally, replace the email in
+`formEmail` with the random alias FormSubmit gives you after activation to keep the address out of the page source.
 
 ## Project structure
 
 ```
 src/
   app/            routes: /, /services, /services/[slug], /work, /work/[slug],
-                  /about, /careers, /contact, /api/contact, sitemap, robots, icon
+                  /about, /careers, /contact, sitemap, robots, icons, OG image
   components/     shared UI (Navbar, Footer, WorkGrid, Process, Faq, CtaBand, ContactForm…)
   components/home home-page sections (Hero, Aperture, ServicesGrid, AiShowcase, Industries…)
   content/site.ts all site content

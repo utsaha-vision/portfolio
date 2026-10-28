@@ -2,29 +2,26 @@
  * All site copy lives here. Edit this file to update the website —
  * components read from it and never hard-code content.
  *
- * NOTE: Items marked `// TODO: verify` are placeholders written without
- * access to real company data. Replace them before going live.
+ * Only publish facts you can stand behind. Sections backed by an empty
+ * list (case studies, openings, socials) are hidden until you add entries.
  */
 
 export const site = {
   name: "Utsaha Vision",
-  legalName: "Utsaha Vision Pvt. Ltd", // TODO: verify
+  legalName: "Utsaha Vision",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://utsahavision.com",
   tagline: "From vision to intelligent software.",
   description:
     "Utsaha Vision is a custom software development and AI/ML company. We design, build and scale web, mobile and enterprise software, with intelligence built in, for startups and enterprises worldwide.",
-  email: "hello@utsahavision.com", // TODO: verify
-  careersEmail: "careers@utsahavision.com", // TODO: verify
-  phone: "", // TODO: add phone number, e.g. "+977 1-XXXXXXX"
-  location: "Kathmandu, Nepal", // TODO: verify
-  hours: "Sun – Fri, 9:00 – 18:00 NPT",
-  socials: [
-    // TODO: verify — replace with real profile URLs
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/utsahavision" },
-    { label: "GitHub", href: "https://github.com/utsahavision" },
-    { label: "Facebook", href: "https://www.facebook.com/utsahavision" },
-    { label: "Instagram", href: "https://www.instagram.com/utsahavision" },
-  ],
+  email: "utsahavision@gmail.com",
+  /** Inbox that receives contact-form submissions via formsubmit.co */
+  formEmail: "utsahavision@gmail.com",
+  careersEmail: "utsahavision@gmail.com",
+  /** Optional, e.g. "+977 98XXXXXXXX". Hidden when empty. */
+  phone: "",
+  location: "Nepal",
+  /** Add real profile URLs, e.g. { label: "LinkedIn", href: "https://www.linkedin.com/company/..." } */
+  socials: [] as { label: string; href: string }[],
 };
 
 export type IconKey =
@@ -238,7 +235,7 @@ export const customSoftware = {
 export const nav = [
   { label: "Services", href: "/services", children: true },
   { label: "Industries", href: "/#industries" },
-  { label: "Work", href: "/work" },
+  { label: "Work", href: "/work", requiresWork: true },
   { label: "About", href: "/about" },
   { label: "Careers", href: "/careers" },
 ];
@@ -254,14 +251,6 @@ export const hero = {
   highlights: ["Custom Software", "Web & Mobile Apps", "AI/ML & GenAI", "Cloud & DevOps"],
 };
 
-// TODO: verify — replace with real figures
-export const stats = [
-  { value: "50+", label: "Projects delivered" },
-  { value: "30+", label: "Clients across 6 countries" },
-  { value: "25+", label: "Engineers & specialists" },
-  { value: "98%", label: "Client satisfaction" },
-];
-
 export const aiShowcase = {
   eyebrow: "AI at the core",
   title: "AI that ships to production, not just to slides.",
@@ -275,7 +264,7 @@ export const aiShowcase = {
       title: "Assistants and agents grounded in your knowledge",
       body: "Deploy LLM-powered assistants that answer from your documents with citations, automate multi-step tasks and plug into your existing tools, all with enterprise-grade privacy.",
       points: ["Retrieval-augmented generation", "Agentic workflows", "Guardrails & evaluation"],
-      metric: { value: "70%", label: "faster knowledge retrieval" },
+      useCases: ["Customer support assistants", "Internal knowledge search", "Document drafting & review"],
     },
     {
       key: "vision",
@@ -284,7 +273,7 @@ export const aiShowcase = {
       title: "Machines that see, inspect and understand",
       body: "From quality inspection on production lines to document OCR and video analytics, our vision models turn pixels into structured, actionable data.",
       points: ["Object detection & tracking", "OCR & document parsing", "Edge deployment"],
-      metric: { value: "99%", label: "detection accuracy targets" },
+      useCases: ["Quality inspection", "ID & invoice scanning", "Footfall and traffic analytics"],
     },
     {
       key: "predictive",
@@ -293,16 +282,16 @@ export const aiShowcase = {
       title: "Forecast demand, risk and behavior",
       body: "Anticipate what's next with forecasting and scoring models trained on your historical data and continuously retrained as conditions change.",
       points: ["Demand forecasting", "Credit & fraud risk", "Churn prediction"],
-      metric: { value: "30%", label: "typical reduction in stockouts" },
+      useCases: ["Inventory planning", "Loan & risk assessment", "Customer retention"],
     },
     {
       key: "nlp",
       icon: "message" as IconKey,
       label: "NLP",
       title: "Understand language at scale",
-      body: "Classify tickets, extract entities from contracts, analyze sentiment and support multilingual users, including Nepali and other South Asian languages.",
+      body: "Classify tickets, extract entities from contracts, analyze sentiment and support users in multiple languages.",
       points: ["Text classification", "Information extraction", "Multilingual models"],
-      metric: { value: "10×", label: "faster document processing" },
+      useCases: ["Ticket routing", "Contract data extraction", "Feedback & sentiment analysis"],
     },
   ],
 };
@@ -318,131 +307,45 @@ export const industries: { icon: IconKey; title: string; body: string }[] = [
   { icon: "gov", title: "Government & NGOs", body: "Citizen services, data platforms and digital public goods." },
 ];
 
-// TODO: verify — illustrative case studies. Replace with real projects.
-export const caseStudies = [
-  {
-    slug: "distribution-erp-platform",
-    title: "Cloud ERP for a nationwide distribution company",
-    client: "FMCG distributor",
-    industry: "Distribution",
-    category: "Custom Software",
-    year: "2025",
-    summary:
-      "A custom cloud ERP replacing spreadsheets and disconnected tools across inventory, sales, delivery and accounting for 12 warehouses.",
-    challenge:
-      "Orders, stock and invoices lived in spreadsheets and three disconnected tools. Month-end closing took two weeks and nobody had a real-time view of stock across warehouses.",
-    solution:
-      "We mapped every workflow with the operations team, then delivered a modular ERP in phases: inventory and warehouse management, sales and route ordering via a mobile app for field reps, delivery tracking, and accounting with tax-compliant invoicing, all integrated with the bank and existing POS.",
-    results: [
-      { value: "60%", label: "less manual data entry" },
-      { value: "2 days", label: "month-end close (from 14)" },
-      { value: "12", label: "warehouses in real time" },
-    ],
-    stack: ["NestJS", "React", "Flutter", "PostgreSQL", "Redis", "AWS"],
-    tone: "ink",
-  },
-  {
-    slug: "retail-demand-forecasting",
-    title: "Demand forecasting engine for multi-store retail",
-    client: "Retail chain",
-    industry: "Retail",
-    category: "AI & Machine Learning",
-    year: "2025",
-    summary:
-      "A machine-learning forecasting platform that predicts SKU-level demand across stores, reducing stockouts and overstock.",
-    challenge:
-      "Inventory decisions were made on spreadsheets and intuition, causing frequent stockouts on fast movers and capital locked up in slow-moving stock.",
-    solution:
-      "We built a data pipeline consolidating POS, seasonal and promotional data, trained gradient-boosted and time-series models per category, and shipped a dashboard with daily reorder recommendations.",
-    results: [
-      { value: "32%", label: "fewer stockouts" },
-      { value: "18%", label: "lower holding cost" },
-      { value: "4 wks", label: "to first insights" },
-    ],
-    stack: ["Python", "LightGBM", "Prophet", "FastAPI", "PostgreSQL", "Next.js"],
-    tone: "ember",
-  },
-  {
-    slug: "document-intelligence-assistant",
-    title: "LLM document assistant for a financial services team",
-    client: "Financial services",
-    industry: "Fintech",
-    category: "Generative AI",
-    year: "2025",
-    summary:
-      "A secure retrieval-augmented assistant that answers questions over thousands of internal policy and compliance documents.",
-    challenge:
-      "Staff spent hours searching scattered PDFs and policy manuals to answer routine customer and compliance questions.",
-    solution:
-      "We designed a RAG pipeline with document parsing, vector search and citation-backed answers, deployed in a private cloud with role-based access control and audit logs.",
-    results: [
-      { value: "70%", label: "faster lookups" },
-      { value: "10k+", label: "documents indexed" },
-      { value: "100%", label: "answers cited" },
-    ],
-    stack: ["LLMs", "LangGraph", "pgvector", "Python", "React", "Docker"],
-    tone: "sky",
-  },
-  {
-    slug: "healthcare-appointment-platform",
-    title: "Patient booking & telehealth platform",
-    client: "Healthcare provider",
-    industry: "Healthcare",
-    category: "Web & Mobile",
-    year: "2024",
-    summary:
-      "A web and mobile platform for appointment booking, digital records and video consultations across multiple clinics.",
-    challenge:
-      "Phone-only booking created long queues, missed appointments and no visibility into doctor availability across branches.",
-    solution:
-      "We delivered a cross-platform mobile app and admin portal with real-time scheduling, SMS reminders, payment integration and secure video consultations.",
-    results: [
-      { value: "45%", label: "fewer no-shows" },
-      { value: "3×", label: "booking capacity" },
-      { value: "4.8★", label: "app rating" },
-    ],
-    stack: ["React Native", "Node.js", "NestJS", "PostgreSQL", "AWS", "WebRTC"],
-    tone: "stone",
-  },
-  {
-    slug: "ecommerce-growth",
-    title: "E-commerce rebuild & growth program",
-    client: "Consumer brand",
-    industry: "E-commerce",
-    category: "Digital Growth",
-    year: "2024",
-    summary:
-      "A headless storefront redesign paired with SEO and performance marketing that turned a slow site into a growth channel.",
-    challenge:
-      "A dated storefront with poor mobile performance and low search visibility was losing customers at checkout.",
-    solution:
-      "We redesigned the UX, rebuilt the storefront on a headless stack with sub-second loads, and ran a data-driven SEO and ads program with conversion tracking.",
-    results: [
-      { value: "2.4×", label: "online revenue" },
-      { value: "+160%", label: "organic traffic" },
-      { value: "0.9s", label: "page load" },
-    ],
-    stack: ["Next.js", "Shopify", "Tailwind CSS", "GA4", "Vercel"],
-    tone: "ember",
-  },
-];
+export type CaseStudy = {
+  slug: string;
+  title: string;
+  client: string;
+  industry: string;
+  category: string;
+  year: string;
+  summary: string;
+  challenge: string;
+  solution: string;
+  /** Measured outcomes, e.g. { value: "40%", label: "less manual data entry" } */
+  results: { value: string; label: string }[];
+  stack: string[];
+  tone: "ember" | "ink" | "sky" | "stone";
+};
+
+/**
+ * Real, client-approved projects only. While this list is empty the
+ * "Work" pages, nav link and case-study sections are hidden.
+ */
+export const caseStudies: CaseStudy[] = [];
+export const hasWork = caseStudies.length > 0;
 
 export const engagementModels = [
   {
     title: "Fixed-scope project",
     body: "Clearly defined scope, timeline and budget. Ideal for MVPs, proofs-of-concept and well-specified builds.",
-    points: ["Fixed price & milestones", "Detailed specification", "Predictable delivery"],
+    points: ["Agreed price & milestones", "Detailed specification", "Predictable delivery"],
   },
   {
     title: "Dedicated team",
     body: "A cross-functional team (engineers, designers, QA and a delivery manager) working exclusively on your product.",
-    points: ["Scale up or down monthly", "Full transparency", "Long-term product ownership"],
+    points: ["Scale the team as needed", "Full transparency", "Long-term product ownership"],
     featured: true,
   },
   {
     title: "Team augmentation",
     body: "Add vetted AI, software or DevOps specialists to your in-house team to close skill gaps fast.",
-    points: ["Onboard in 1–2 weeks", "Your processes & tools", "Flexible contracts"],
+    points: ["Quick onboarding", "Your processes & tools", "Flexible contracts"],
   },
 ];
 
@@ -456,10 +359,10 @@ export const processSteps = [
 
 export const whyUs = [
   { title: "AI-first engineering", body: "AI expertise is built into every team, not sold as an add-on." },
-  { title: "Senior-led delivery", body: "Experienced engineers and architects lead every engagement." },
+  { title: "Hands-on leadership", body: "The people who scope your project stay involved through delivery." },
   { title: "Security by design", body: "Secure coding, access control and data privacy from the first commit." },
   { title: "Transparent communication", body: "Weekly demos, shared boards and a single point of contact." },
-  { title: "Cost-effective talent", body: "World-class engineering from Nepal at a competitive cost." },
+  { title: "Cost-effective", body: "Quality engineering from Nepal at a competitive cost." },
   { title: "Long-term partnership", body: "We support, maintain and evolve what we build together." },
 ];
 
@@ -475,13 +378,13 @@ export const about = {
   intro:
     "Utsaha (उत्साह) means enthusiasm: the energy to begin and the drive to see things through. We pair that energy with a clear vision of how AI and modern software can transform the way organizations work.",
   story: [
-    "Utsaha Vision was founded in Kathmandu by engineers who believed world-class AI and software could be built in Nepal and delivered to businesses everywhere.", // TODO: verify
-    "Today we are a multidisciplinary team of ML engineers, software developers, designers and digital strategists working with startups, enterprises and public-sector organizations to solve real problems with technology.",
+    "Utsaha Vision is a software and AI company from Nepal. We build custom software, from web platforms and mobile apps to enterprise systems, and bring AI into it where it solves a real problem.",
+    "We work closely with each client, keep communication clear and honest, and build software that is meant to be maintained and grown for years.",
   ],
   mission:
     "To help organizations unlock the power of AI and software through reliable engineering, thoughtful design and genuine partnership.",
   vision:
-    "To be the most trusted AI and software engineering partner from South Asia, known for quality, integrity and impact.",
+    "To be a trusted software and AI partner, known for quality, integrity and impact.",
   values: [
     { title: "Outcome over output", body: "We measure success by the impact we create, not hours billed." },
     { title: "Craft & quality", body: "We take pride in clean code, thoughtful design and thorough testing." },
@@ -493,24 +396,17 @@ export const about = {
 };
 
 export const careers = {
-  title: "Build the future of AI with us.",
+  title: "Build great software with us.",
   intro:
-    "Join a team that values curiosity, craft and ownership. Work on meaningful AI and software products for clients around the world, right from Kathmandu.",
+    "Join a team that values curiosity, craft and ownership. Work on meaningful software and AI products for real clients, right here in Nepal.",
   perks: [
-    { title: "Meaningful work", body: "Ship real AI and software products used by thousands of people." },
-    { title: "Learning budget", body: "Courses, certifications and conferences to grow your skills." },
-    { title: "Flexible work", body: "Hybrid working and flexible hours that respect your life." },
-    { title: "Health & wellbeing", body: "Health insurance and wellbeing support for you and your family." },
-    { title: "Mentorship", body: "Learn from senior engineers through code reviews and pairing." },
-    { title: "Great culture", body: "Hackathons, knowledge-sharing sessions and team outings." },
+    { title: "Meaningful work", body: "Build real software and AI products that clients rely on every day." },
+    { title: "Modern stack", body: "Work with current tools and frameworks across web, mobile, cloud and AI." },
+    { title: "Learn by doing", body: "Code reviews, pairing and knowledge sharing help everyone grow." },
+    { title: "Ownership", body: "Take responsibility for your work and see its impact directly." },
   ],
-  // TODO: verify — replace with real openings or leave empty to show only the general application.
-  openings: [
-    { title: "Machine Learning Engineer", type: "Full-time", location: "Kathmandu / Hybrid" },
-    { title: "Senior Full-Stack Developer (React/Node.js)", type: "Full-time", location: "Kathmandu / Hybrid" },
-    { title: "Flutter Developer", type: "Full-time", location: "Kathmandu" },
-    { title: "UI/UX Designer", type: "Full-time", location: "Kathmandu" },
-  ],
+  /** Add real roles, e.g. { title: "Flutter Developer", type: "Full-time", location: "Kathmandu" }. */
+  openings: [] as { title: string; type: string; location: string }[],
 };
 
 export const faqs = [
@@ -520,15 +416,15 @@ export const faqs = [
   },
   {
     q: "How much does a project cost?",
-    a: "It depends on scope, complexity and engagement model. After a free discovery call we provide a detailed proposal with transparent pricing, and most MVPs start from a focused fixed-scope phase.",
+    a: "It depends on scope, complexity and engagement model. After an initial conversation about your needs, we share a proposal with transparent pricing. Many projects start with a focused first phase.",
   },
   {
     q: "How long does it take to build an MVP?",
-    a: "A typical MVP or AI proof-of-concept takes 4–10 weeks. Larger platforms are delivered in phases, with working software shipped every sprint.",
+    a: "It depends on scope. A focused MVP or AI proof-of-concept usually takes a few weeks to a few months. Larger platforms are delivered in phases, with working software shipped every sprint.",
   },
   {
     q: "Do you work with international clients?",
-    a: "Yes. We work with clients across time zones, with overlapping working hours, regular video calls and shared project tools for full visibility.",
+    a: "Yes. We can work across time zones, with overlapping working hours, regular video calls and shared project tools for full visibility.",
   },
   {
     q: "Who owns the intellectual property?",

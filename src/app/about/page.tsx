@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Compass, Target } from "lucide-react";
-import { about, site, stats } from "@/content/site";
+import { about, site } from "@/content/site";
 import { PageHeader } from "@/components/PageHeader";
 import { CtaBand } from "@/components/CtaBand";
 import { Reveal } from "@/components/Reveal";
@@ -63,20 +63,6 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </Container>
-      </section>
-
-      <section className="border-y border-line">
-        <Container>
-          <dl className="grid grid-cols-2 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="py-12 text-center">
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="font-display text-5xl font-semibold tracking-[-0.01em] text-ink">{s.value}</dd>
-                <dd className="mt-2 text-sm text-muted">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
         </Container>
       </section>
 

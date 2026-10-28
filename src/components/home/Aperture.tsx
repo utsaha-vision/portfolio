@@ -17,8 +17,6 @@ const chips = [
   { icon: Cloud, label: "Cloud Native", className: "right-0 bottom-[28%]" },
 ];
 
-const spark = [14, 18, 12, 20, 16, 24, 19, 28, 22, 30];
-
 export function Aperture() {
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[420px] lg:max-w-[520px]" aria-hidden>
@@ -92,25 +90,6 @@ export function Aperture() {
         </div>
       ))}
 
-      <div className="absolute bottom-0 left-1/2 hidden w-56 -translate-x-1/2 rounded-2xl border border-line bg-white p-4 shadow-[0_16px_40px_-16px_rgb(11_13_18/0.3)] sm:block">
-        <div className="flex items-center justify-between text-xs">
-          <span className="text-muted">Inference latency · p95</span>
-          <span className="rounded-full bg-emerald-50 px-2 py-0.5 font-medium text-emerald-700">Healthy</span>
-        </div>
-        <div className="mt-2 flex items-end justify-between">
-          <p className="font-display text-2xl font-semibold text-ink">42 ms</p>
-          <svg viewBox="0 0 90 32" className="h-8 w-24">
-            <polyline
-              fill="none"
-              stroke="#ff5a1f"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              points={spark.map((v, i) => `${i * 10},${32 - v}`).join(" ")}
-            />
-          </svg>
-        </div>
-      </div>
     </div>
   );
 }

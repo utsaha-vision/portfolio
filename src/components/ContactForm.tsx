@@ -21,13 +21,20 @@ export function ContactForm() {
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`https://formsubmit.co/ajax/${site.formEmail}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          ...Object.fromEntries(new FormData(form)),
+          _subject: `New project enquiry from the ${site.name} website`,
+          _template: "table",
+          _captcha: "false",
+        }),
       });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      const data = (await res.json().catch(() => ({}))) as { success?: boolean | string; message?: string };
+      if (!res.ok || String(data.success) === "false") {
+        throw new Error(data.message || "Unable to send your message.");
+      }
       form.reset();
       setStatus("sent");
     } catch (err) {
@@ -41,7 +48,7 @@ export function ContactForm() {
       <div className="flex min-h-[420px] flex-col items-center justify-center rounded-2xl border border-line bg-mist p-10 text-center" role="status">
         <CheckCircle2 className="h-12 w-12 text-emerald-600" strokeWidth={1.75} />
         <h3 className="mt-4 font-display text-2xl font-semibold text-ink">Thank you!</h3>
-        <p className="mt-2 max-w-sm text-muted">Your message is on its way. A member of our team will reply within one business day.</p>
+        <p className="mt-2 max-w-sm text-muted">Your message is on its way. We'll get back to you as soon as possible.</p>
         <button onClick={() => setStatus("idle")} className="mt-6 text-sm font-medium text-ember-600 hover:underline">
           Send another message
         </button>
@@ -61,7 +68,7 @@ export function ContactForm() {
         <Field label="Company" optional>
           <input name="company" maxLength={120} autoComplete="organization" className={field} placeholder="Company name" />
         </Field>
-        <Field label="Service">
+        <Field label="Service" optional>
           <select name="service" className={field} defaultValue="">
             <option value="" disabled>Select a service</option>
             {services.map((s) => <option key={s.slug}>{s.title}</option>)}
@@ -70,7 +77,9 @@ export function ContactForm() {
         </Field>
       </div>
       <fieldset>
-        <legend className="mb-2 text-sm font-medium text-ink">Estimated budget</legend>
+        <legend className="mb-2 text-sm font-medium text-ink">
+          Estimated budget <span className="font-normal text-muted">(optional)</span>
+        </legend>
         <div className="flex flex-wrap gap-2">
           {budgets.map((b) => (
             <label key={b} className="cursor-pointer">
@@ -86,7 +95,7 @@ export function ContactForm() {
         <textarea name="message" required minLength={10} maxLength={5000} rows={5} className={field} placeholder="Tell us about your goals, timeline and any requirements..." />
       </Field>
       {/* Honeypot: hidden from humans, bots tend to fill it */}
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
+      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
       {status === "error" && (
         <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
@@ -95,7 +104,7 @@ export function ContactForm() {
       )}
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-muted">We respect your privacy. Your details are never shared.</p>
+        <p className="text-xs text-muted">We only use your details to respond to your enquiry.</p>
         <button
           type="submit"
           disabled={status === "sending"}

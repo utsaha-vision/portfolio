@@ -10,8 +10,8 @@ export function Industries() {
         <Reveal>
           <SectionHeading
             eyebrow="Industries"
-            title="Domain expertise across the sectors that matter."
-            subtitle="We understand the regulations, workflows and customers of the industries we serve, so solutions fit from day one."
+            title="Industries we build for."
+            subtitle="We take time to understand the workflows, users and rules of your sector, so the software fits how your business actually works."
           />
         </Reveal>
         <Reveal className="mt-14">

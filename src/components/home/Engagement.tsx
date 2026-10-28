@@ -25,11 +25,6 @@ export function Engagement() {
                   m.featured ? "border-ink bg-ink text-white" : "border-line bg-white",
                 )}
               >
-                {m.featured && (
-                  <span className="absolute right-6 top-6 rounded-full bg-ember-500 px-3 py-1 text-xs font-medium text-white">
-                    Most popular
-                  </span>
-                )}
                 <p className={clsx("font-display text-sm font-medium", m.featured ? "text-white/50" : "text-muted")}>0{i + 1}</p>
                 <h3 className="mt-4 font-display text-2xl font-semibold tracking-[-0.01em]">{m.title}</h3>
                 <p className={clsx("mt-3 leading-relaxed", m.featured ? "text-white/65" : "text-muted")}>{m.body}</p>

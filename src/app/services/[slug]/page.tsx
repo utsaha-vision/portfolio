@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import clsx from "clsx";
 import { CheckCircle2 } from "lucide-react";
-import { customSoftware, services } from "@/content/site";
+import { customSoftware, hasWork, services } from "@/content/site";
 import { ArchitectureVisual } from "@/components/ArchitectureVisual";
 import { Process } from "@/components/Process";
 import { Faq } from "@/components/Faq";
@@ -39,7 +39,7 @@ export default async function ServicePage({ params }: Props) {
       <PageHeader eyebrow="Services" title={s.title} subtitle={s.intro}>
         <div className="mt-9 flex flex-wrap gap-3">
           <Button href="/contact">Discuss your project</Button>
-          <Button href="/work" variant="outline">See case studies</Button>
+          <Button href="/services" variant="outline">All services</Button>
         </div>
       </PageHeader>
 
@@ -146,12 +146,14 @@ export default async function ServicePage({ params }: Props) {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <Container>
-          <SectionHeading eyebrow="Case studies" title="Related work" />
-          <div className="mt-12"><WorkGrid limit={2} /></div>
-        </Container>
-      </section>
+      {hasWork && (
+        <section className="py-20 sm:py-28">
+          <Container>
+            <SectionHeading eyebrow="Case studies" title="Related work" />
+            <div className="mt-12"><WorkGrid limit={2} /></div>
+          </Container>
+        </section>
+      )}
 
       {deep && (
         <Faq

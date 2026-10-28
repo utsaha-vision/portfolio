@@ -43,7 +43,7 @@ const orgJsonLd = {
   email: site.email,
   description: site.description,
   address: { "@type": "PostalAddress", addressLocality: site.location },
-  sameAs: site.socials.map((s) => s.href),
+  ...(site.socials.length > 0 && { sameAs: site.socials.map((s) => s.href) }),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

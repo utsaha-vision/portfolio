@@ -24,7 +24,7 @@ export function CustomSoftware() {
             </ul>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button href="/services/software-development" variant="dark" className="w-full sm:w-auto">Our software services</Button>
-              <Button href="/contact" variant="outline" className="w-full sm:w-auto">Free estimate</Button>
+              <Button href="/contact" variant="outline" className="w-full sm:w-auto">Get an estimate</Button>
             </div>
           </Reveal>
           <Reveal delay={0.1}>

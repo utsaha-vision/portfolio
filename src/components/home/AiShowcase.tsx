@@ -69,10 +69,14 @@ export function AiShowcase() {
                     Explore AI solutions
                   </Button>
                 </div>
-                <div className="flex flex-col justify-end rounded-xl border border-white/10 bg-gradient-to-br from-ember-500/25 via-ink-3 to-ink-3 p-6">
+                <div className="flex flex-col rounded-xl border border-white/10 bg-gradient-to-br from-ember-500/25 via-ink-3 to-ink-3 p-6">
                   <Icon name={current.icon} className="h-10 w-10 text-ember-400" />
-                  <p className="mt-auto pt-16 font-display text-6xl font-semibold tracking-[-0.01em]">{current.metric.value}</p>
-                  <p className="mt-1 text-sm text-white/60">{current.metric.label}</p>
+                  <p className="mt-auto pt-12 text-xs font-medium uppercase tracking-wider text-white/50">Where it helps</p>
+                  <ul className="mt-3 space-y-2.5">
+                    {current.useCases.map((u) => (
+                      <li key={u} className="border-t border-white/10 pt-2.5 text-[15px] text-white/90">{u}</li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             </AnimatePresence>

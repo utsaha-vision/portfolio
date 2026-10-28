@@ -1,27 +1,26 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/content/site";
 import { ContactForm } from "@/components/ContactForm";
 import { Container, Eyebrow } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Talk to Utsaha Vision about your AI, software or digital project. We reply within one business day.",
+  description: "Talk to Utsaha Vision about your custom software, AI or digital project.",
   alternates: { canonical: "/contact" },
 };
 
 const steps = [
-  "We reply within one business day",
-  "Free 30-minute discovery call with an expert",
-  "Proposal with scope, timeline and estimate",
+  "We read your message and reply by email",
+  "A call to understand your goals and requirements",
+  "A proposal with scope, timeline and estimate",
 ];
 
 export default function ContactPage() {
   const details = [
     { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
     ...(site.phone ? [{ icon: Phone, label: "Phone", value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` }] : []),
-    { icon: MapPin, label: "Office", value: site.location },
-    { icon: Clock, label: "Hours", value: site.hours },
+    { icon: MapPin, label: "Location", value: site.location },
   ];
 
   return (
@@ -65,7 +64,7 @@ export default function ContactPage() {
 
         <div className="rounded-3xl border border-line bg-white p-6 shadow-[0_24px_60px_-30px_rgb(11_13_18/0.25)] sm:p-10">
           <h2 className="font-display text-2xl font-semibold tracking-[-0.01em] text-ink">Tell us about your project</h2>
-          <p className="mt-1 mb-8 text-sm text-muted">All fields except company are required.</p>
+          <p className="mt-1 mb-8 text-sm text-muted">Share as much or as little detail as you like.</p>
           <ContactForm />
         </div>
       </Container>

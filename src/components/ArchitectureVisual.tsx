@@ -52,10 +52,10 @@ export function ArchitectureVisual() {
       </div>
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-white/10 px-4 py-4 font-mono text-[11px] sm:px-7 sm:text-xs">
         <span className="flex items-center gap-2 text-white/60">
-          <GitBranch className="h-3.5 w-3.5" /> main · build #248
+          <GitBranch className="h-3.5 w-3.5" /> ci/cd pipeline
         </span>
         <span className="flex items-center gap-2 text-emerald-400">
-          <CheckCircle2 className="h-3.5 w-3.5" /> 312 tests passed
+          <CheckCircle2 className="h-3.5 w-3.5" /> all checks passing
         </span>
       </div>
     </div>

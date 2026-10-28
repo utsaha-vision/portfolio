@@ -7,6 +7,7 @@ import { Industries } from "@/components/home/Industries";
 import { Engagement } from "@/components/home/Engagement";
 import { WhyUs } from "@/components/home/WhyUs";
 import { WorkGrid } from "@/components/WorkGrid";
+import { hasWork } from "@/content/site";
 import { Process } from "@/components/Process";
 import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
@@ -21,6 +22,7 @@ export default function Home() {
       <ServicesGrid />
       <CustomSoftware />
       <AiShowcase />
+      {hasWork && (
       <section className="py-24 sm:py-32">
         <Container>
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -40,6 +42,7 @@ export default function Home() {
           </div>
         </Container>
       </section>
+      )}
       <Industries />
       <Process />
       <Engagement />

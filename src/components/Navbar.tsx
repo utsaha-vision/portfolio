@@ -5,10 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
-import { nav, services } from "@/content/site";
+import { hasWork, nav as allNav, services } from "@/content/site";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 import { Container } from "./ui";
+
+const nav = allNav.filter((n) => !("requiresWork" in n) || hasWork);
 
 export function Navbar() {
   const pathname = usePathname();
@@ -73,10 +75,10 @@ export function Navbar() {
                     <div className="flex flex-col justify-between bg-ink p-6 text-white">
                       <div>
                         <p className="font-display text-lg font-semibold leading-snug">Not sure where to start?</p>
-                        <p className="mt-2 text-sm text-white/60">Book a free consultation with our solution architects.</p>
+                        <p className="mt-2 text-sm text-white/60">Tell us about your project and we'll suggest the right approach.</p>
                       </div>
                       <Link href="/contact" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-ember-400 hover:text-white">
-                        Book a call <ArrowRight className="h-4 w-4" />
+                        Get in touch <ArrowRight className="h-4 w-4" />
                       </Link>
                     </div>
                   </div>

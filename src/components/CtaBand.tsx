@@ -3,7 +3,7 @@ import { Button, Container } from "./ui";
 
 export function CtaBand({
   title = "Have a project in mind? Let's build what's next.",
-  subtitle = "Tell us about your goals. We'll get back within one business day with ideas, a plan and a transparent estimate.",
+  subtitle = "Tell us about your goals and we'll get back to you with ideas, a plan and a transparent estimate.",
 }: {
   title?: string;
   subtitle?: string;

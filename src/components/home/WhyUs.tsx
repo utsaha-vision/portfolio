@@ -1,5 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
-import { stats, whyUs } from "@/content/site";
+import { whyUs } from "@/content/site";
 import { Reveal } from "../Reveal";
 import { Container, SectionHeading } from "../ui";
 
@@ -13,15 +13,6 @@ export function WhyUs() {
             title="A partner invested in your success."
             subtitle="We combine deep technical expertise with business understanding to deliver software that creates lasting value."
           />
-          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line">
-            {stats.map((s) => (
-              <div key={s.label} className="bg-white p-6">
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="font-display text-4xl font-semibold tracking-[-0.01em] text-ink">{s.value}</dd>
-                <dd className="mt-1 text-sm text-muted">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
         </Reveal>
         <Reveal>
         <ul className="grid content-start gap-x-8 gap-y-10 sm:grid-cols-2">
